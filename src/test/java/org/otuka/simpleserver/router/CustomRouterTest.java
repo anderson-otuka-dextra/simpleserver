@@ -5,16 +5,18 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.otuka.http.HTTP;
 import org.otuka.http.HTTPResponse;
+import org.otuka.simpleserver.BaseTest;
 import org.otuka.simpleserver.SimpleServer;
 
 /**
  * @author Anderson Otuka (anderson.otuka@dextra-sw.com)
  */
-public class CustomRouterTest {
+public class CustomRouterTest extends BaseTest {
 
     @Test
     public void testRun() {
-        int port = new SimpleServer<>("0.0.0.0", 56789, CustomRouter.class).bind();
+        server = new SimpleServer<>("0.0.0.0", 56789, CustomRouter.class);
+        port = server.bind();
         String baseUrl = "http://localhost:" + port + "/";
         HTTPResponse httpResponse = doGet(baseUrl);
         assertEquals(400, httpResponse.getCode());

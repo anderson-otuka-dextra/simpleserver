@@ -9,11 +9,12 @@ import org.otuka.http.HTTPResponse;
 /**
  * @author Anderson Otuka (anderson.otuka@dextra-sw.com)
  */
-public class SimpleServerTest {
+public class SimpleServerTest extends BaseTest {
 
     @Test
     public void testRun() {
-        int port = new SimpleServer("0.0.0.0", 56789).bind();
+        server = new SimpleServer("0.0.0.0", 56789);
+        port = server.bind();
         String baseUrl = "http://localhost:" + port + "/";
         HTTPResponse httpResponse = doGet(baseUrl);
         assertEquals(200, httpResponse.getCode());

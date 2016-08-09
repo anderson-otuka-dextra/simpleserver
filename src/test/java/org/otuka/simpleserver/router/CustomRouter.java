@@ -18,7 +18,7 @@ public class CustomRouter extends BaseRouter {
         try {
             final HttpServletResponse resp = r.getResp();
             if (path.isEmpty() || path.size() != 1 || !path.get(0).equals("custom")) {
-                throw new RuntimeException("Expected \"custom\" route.");
+                resp.setStatus(400);
             }
             resp.getWriter().write("OK!");
             return true;
